@@ -31,6 +31,9 @@ function House () {
                 <td>
                     <Link to={`${item.id}/edit`} className = "btn btn-success"> Edit </Link>
                 </td>
+                <td>
+                    <Link to={`${item.id}/view`} className = "btn btn-success"> View </Link>
+                </td>
             </tr>
         )
 
@@ -55,6 +58,7 @@ function House () {
                                         <th>Loan Amount</th>
                                         <th>Risk</th>
                                         <th>Edit</th>
+                                        <th>View</th>
                                     </tr>
                                 </thead>
                                 <tbody>

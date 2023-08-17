@@ -6,6 +6,8 @@ import Contact from "../pages/Contact";
 import HouseList from '../pages/House.js'
 import HouseCreate from '../pages/HouseCreate.js'
 import HouseEdit from '../pages/HouseEdit.js'
+import HouseView from '../pages/HouseView.js'
+
 
 function MyRouter() {
     return (
@@ -16,6 +18,7 @@ function MyRouter() {
             <Route path="/houses" element={<HouseList />} />
             <Route path="/houses/create" element={<HouseCreate />} />
             <Route path="houses/:id/edit" element={<HouseEdit />} />
+            <Route path="houses/:id/view" element={<HouseView />} />
             
         </Routes>
 
