@@ -4,12 +4,14 @@ const { json } = require('express/lib/response')
 
 const app = express()
 
-var corsOption = {
-    origin: 'https://localhost:8081'
-}
 
+const corsOrigin ={
+    origin:'http://localhost:3000', //from the port where front end is using
+    credentials:true,            
+    optionSuccessStatus:200
+}
 // middle ware
-app.use(cors(corsOption))
+app.use(cors(corsOrigin))
 // app.use(express(json)) // Our API will accept and return data in JSON.
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
