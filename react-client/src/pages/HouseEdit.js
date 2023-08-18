@@ -8,7 +8,6 @@ function HouseEdit() {
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true)
-    const [inputErrorList, setInputErrorList] = useState({})
     const [house, setHouse] = useState({});
     const handleInput = (event) => {
         event.persist();
@@ -52,7 +51,6 @@ function HouseEdit() {
             }).catch(function (error) {
                 if (error.response) {
                     if (error.response.status === 422) {
-                        setInputErrorList(error.response.data.errors)
                         setLoading(false)
                     }
                     if (error.response.status === 404) {
@@ -96,24 +94,20 @@ function HouseEdit() {
                             <div className="card-body">
                                 <form onSubmit={updateHouse}>
                                     <div className="mb-3">
-                                        <label>Address</label>
-                                        <input type="text" id="address" name="address" value={house.address} onChange={handleInput} className="form-control" />
-                                        <span className="text-danger">{inputErrorList.address}</span>
+                                        <label>Address <span class="required">*</span></label>
+                                        <input type="textarea" id="address" name="address" value={house.address} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
-                                        <label>Current Value</label>
-                                        <input type="text" id="currentValue" name="currentValue" value={house.currentValue} onChange={handleInput} className="form-control" />
-                                        <span className="text-danger">{inputErrorList.address}</span>
+                                        <label>Current Value <span class="required">*</span></label>
+                                        <input type="number" id="currentValue" name="currentValue" min="0"  value={house.currentValue} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
-                                        <label>Loan Amount</label>
-                                        <input type="text" id="laonAmount" name="loanAmount" value={house.loanAmount} onChange={handleInput} className="form-control" />
-                                        <span className="text-danger">{inputErrorList.address}</span>
+                                        <label>Loan Amount <span class="required">*</span></label>
+                                        <input type="number" id="laonAmount" name="loanAmount" min="0"  value={house.loanAmount} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
                                         <label>Risk</label>
-                                        <input type="text" id="risk" name="risk" value={house.risk} readOnly className="form-control" />
-                                        <span className="text-danger">{inputErrorList.address}</span>
+                                        <input type="text" id="risk" name="risk" value={house.risk}  className="form-control" />
                                     </div>
                                     <div className="mb-3">
                                         <button type="submit" className="btn btn-primary" > Update house</button>

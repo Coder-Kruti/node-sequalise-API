@@ -6,7 +6,6 @@ import Loading from '../components/Loading.js'
 function HouseCreate() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
-    const [inputErrorList, setInputErrorList] = useState({})
     const [house, setHouse] = useState({
         address: '',
         currentValue: '',
@@ -38,7 +37,6 @@ function HouseCreate() {
             }).catch(function (error) {
                 if (error.response) {
                     if (error.response.status === 422) {
-                        setInputErrorList(error.response.data.errors)
                         setLoading(false)
                     }
                     if (error.response.status === 500) {
@@ -70,19 +68,16 @@ function HouseCreate() {
                             <div className="card-body">
                                 <form onSubmit={saveHouse}>
                                     <div className="mb-3">
-                                        <label>Address</label>
-                                        <input type="text" id="address" name="address" value={house.address} onChange={handleInput} className="form-control" />
-                                        <span className="text-danger">{inputErrorList.address}</span>
+                                        <label>Address <span class="required">*</span></label>
+                                        <input type="text" id="address" name="address" value={house.address} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
-                                        <label>Current Value</label>
-                                        <input type="text" id="currentValue" name="currentValue" value={house.currentValue} onChange={handleInput} className="form-control" />
-                                        <span className="text-danger">{inputErrorList.address}</span>
+                                        <label>Current Value <span class="required">*</span></label>
+                                        <input type="text" id="currentValue" name="currentValue" value={house.currentValue} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
-                                        <label>Loan Amount</label>
-                                        <input type="text" id="laonAmount" name="loanAmount" value={house.loanAmount} onChange={handleInput} className="form-control" />
-                                        <span className="text-danger">{inputErrorList.address}</span>
+                                        <label>Loan Amount <span class="required">*</span></label>
+                                        <input type="text" id="laonAmount" name="loanAmount" value={house.loanAmount} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
                                         <button type="submit" className="btn btn-primary" > Save house</button>
