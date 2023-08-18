@@ -72,7 +72,7 @@ function HouseCreate() {
                                     </div>
                                     <div className="mb-3">
                                         <label>Current Value <span className="required">*</span></label>
-                                        <input type="number" id="currentValue" name="currentValue" min= "0.1" value={house.currentValue} onChange={handleInput} required className="form-control" />
+                                        <input type="number" id="currentValue" name="currentValue" min= "0.001" value={house.currentValue} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
                                         <label>Loan Amount <span className="required">*</span></label>
