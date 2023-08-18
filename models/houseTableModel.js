@@ -1,22 +1,22 @@
- module.exports = (sequelize, DataTypes) =>{
+module.exports = (sequelize, DataTypes) => {
     const HouseTable = sequelize.define("houseTable", {
 
-        address:{
+        address: {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        currentValue:{
+        currentValue: {
             type: DataTypes.FLOAT,
             allowNull: false
         },
-        loanAmount:{
+        loanAmount: {
             type: DataTypes.FLOAT,
             allowNull: false
         },
-        risk:{
-             type: DataTypes.FLOAT 
+        risk: {
+            type: DataTypes.FLOAT
         }
     })
     return HouseTable
-    
- }
+
+}
