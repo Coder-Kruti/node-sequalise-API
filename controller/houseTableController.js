@@ -5,6 +5,11 @@ const HouseTable = db.houseTables;
 
 // add HouseTable
 const addHouseTable = async (req, res) => {
+    //Valiadate the incoming srequest.
+    let isValid = validateRequest(req)
+    if(!isValid){
+        res.status(400).send(" Address , Current Value , Loan Amount are required details. Please check if all the details are filled");
+    }
 
     let calculatedRisk = evaluateRisk(req.body.loanAmount, req.body.currentValue)
     let request = {
@@ -36,7 +41,10 @@ const getAllHouseTable = async (req, res) => {
 const updateHouseTable = async (req, res) => {
     let id = req.params.id
     let calculatedRisk = evaluateRisk(req.body.loanAmount, req.body.currentValue)
-    console.log(calculatedRisk)
+    let isValid = validateRequest(req)
+    if(!isValid) {
+        res.status(400).send(" Address , Current Value , Loan Amount are required details. Current value should be greater than 0.  Please check if all the details are filled");
+    }
     let request = {
         address: req.body.address,
         currentValue: req.body.currentValue,
@@ -64,6 +72,14 @@ const evaluateRisk = (loanAmount, currentValue) => {
     }
     return calculatedRisk;
 
+}
+const validateRequest = (req) => {
+    // Validate the incoming request . 
+    // current value cannot be 0
+    if (req.body.address == null || req.body.loanAmount == null || req.body.currentValue == null || req.body.currentValue > 0) {
+        return false;
+    }
+    return true;
 }
 
 module.exports = {

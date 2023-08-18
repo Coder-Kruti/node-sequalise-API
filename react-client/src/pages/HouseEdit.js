@@ -94,20 +94,16 @@ function HouseEdit() {
                             <div className="card-body">
                                 <form onSubmit={updateHouse}>
                                     <div className="mb-3">
-                                        <label>Address <span class="required">*</span></label>
+                                        <label>Address <span className="required">*</span></label>
                                         <input type="textarea" id="address" name="address" value={house.address} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
-                                        <label>Current Value <span class="required">*</span></label>
-                                        <input type="number" id="currentValue" name="currentValue" min="0"  value={house.currentValue} onChange={handleInput} required className="form-control" />
+                                        <label>Current Value <span className="required">*</span></label>
+                                        <input type="number" id="currentValue" name="currentValue" min="1"  value={house.currentValue} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
-                                        <label>Loan Amount <span class="required">*</span></label>
-                                        <input type="number" id="laonAmount" name="loanAmount" min="0"  value={house.loanAmount} onChange={handleInput} required className="form-control" />
-                                    </div>
-                                    <div className="mb-3">
-                                        <label>Risk</label>
-                                        <input type="text" id="risk" name="risk" value={house.risk}  className="form-control" />
+                                        <label>Loan Amount <span className="required">*</span></label>
+                                        <input type="number" id="laonAmount" name="loanAmount"  min="0" max={house.currentValue} value={house.loanAmount} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
                                         <button type="submit" className="btn btn-primary" > Update house</button>
