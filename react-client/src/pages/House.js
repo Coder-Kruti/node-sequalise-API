@@ -9,8 +9,7 @@ function House() {
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/houses`).then(res => {
-            console.log(res)
-            setHouses(res.data);
+            res.status === 204 ? setHouses([]) : setHouses(res.data) // there are no houses so set empty array else set actual content
             setLoading(false)
         });
     }, [])

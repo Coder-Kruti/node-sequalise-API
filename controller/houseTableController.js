@@ -20,7 +20,7 @@ const addHouseTable = async (req, res) => {
         }
 
         const requestBody = await HouseTable.create(request)
-        res.status(200).send(requestBody)
+        res.status(201).send(requestBody)
     }
 }
 
@@ -35,7 +35,7 @@ const getAllHouseTable = async (req, res) => {
             'risk'
         ]
     })
-    res.status(200).send(house)
+    house.length === 0 ? res.status(204).send() :   res.status(200).send(house)
 }
 
 //update house record for a particualr id 
@@ -61,7 +61,7 @@ const updateHouseTable = async (req, res) => {
 const getHouseTable = async (req, res) => {
     let id = req.params.id
     let house = await HouseTable.findOne({ where: { id: id } })
-    res.status(200).send(house)
+    house === null ? res.status(204).send() :  res.status(200).send(house);    
 }
 
 const evaluateRisk = (loanAmount, currentValue) => {
