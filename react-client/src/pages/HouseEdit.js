@@ -18,6 +18,10 @@ function HouseEdit() {
             setHouse(res.data);
             setLoading(false)
         }).catch(function (error) {
+            if (error.response.status === 404) {
+                alert("Please fill in address, Loan Amount, Current Value")
+                setLoading(false)
+            }
             if (error.response) {
                 if (error.response.status === 404) {
                     alert("Id not found")
@@ -50,7 +54,8 @@ function HouseEdit() {
                 }
             }).catch(function (error) {
                 if (error.response) {
-                    if (error.response.status === 422) {
+                    if (error.response.status === 400) {
+                        alert("Please fill in address, Loan Amount, Current Value")
                         setLoading(false)
                     }
                     if (error.response.status === 404) {
@@ -99,11 +104,11 @@ function HouseEdit() {
                                     </div>
                                     <div className="mb-3">
                                         <label>Current Value <span className="required">*</span></label>
-                                        <input type="number" id="currentValue" name="currentValue" min="1"  value={house.currentValue} onChange={handleInput} required className="form-control" />
+                                        <input type="number" id="currentValue" name="currentValue" min="0.1" step= "0.001" value={house.currentValue} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
                                         <label>Loan Amount <span className="required">*</span></label>
-                                        <input type="number" id="laonAmount" name="loanAmount"  min="0" max={house.currentValue} value={house.loanAmount} onChange={handleInput} required className="form-control" />
+                                        <input type="number" id="laonAmount" name="loanAmount"  min="0" step= "0.001" max={house.currentValue} value={house.loanAmount} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
                                         <button type="submit" className="btn btn-primary" > Update house</button>

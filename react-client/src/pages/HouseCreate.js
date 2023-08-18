@@ -34,7 +34,8 @@ function HouseCreate() {
                 setLoading(false)
             }).catch(function (error) {
                 if (error.response) {
-                    if (error.response.status === 422) {
+                    if (error.response.status === 400) {
+                        alert("Please fill in address, Loan Amount, Current Value")
                         setLoading(false)
                     }
                     if (error.response.status === 500) {
@@ -71,7 +72,7 @@ function HouseCreate() {
                                     </div>
                                     <div className="mb-3">
                                         <label>Current Value <span className="required">*</span></label>
-                                        <input type="number" id="currentValue" name="currentValue" min= "1" value={house.currentValue} onChange={handleInput} required className="form-control" />
+                                        <input type="number" id="currentValue" name="currentValue" min= "0.1" value={house.currentValue} onChange={handleInput} required className="form-control" />
                                     </div>
                                     <div className="mb-3">
                                         <label>Loan Amount <span className="required">*</span></label>
