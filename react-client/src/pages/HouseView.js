@@ -7,10 +7,7 @@ function HouseView() {
     let { id } = useParams();
     const [loading, setLoading] = useState(true)
     const [house, setHouse] = useState({});
-    const handleInput = (event) => {
-        event.persist();
-        setHouse(house => ({ ...house, [event.target.name]: event.target.value }))
-    }
+
     useEffect(() => {
         axios.get(`http://localhost:8080/api/houses/${id}`).then(res => {
             setHouse(res.data);
@@ -59,15 +56,19 @@ function HouseView() {
                                 <form>
                                     <div className="mb-3">
                                         <label>Address</label>
-                                        <input type="text" id="address" name="address" value={house.address} onChange={handleInput} className="form-control" />
+                                        <input type="text" id="address" name="address" value={house.address} className="form-control" />
                                     </div>
                                     <div className="mb-3">
                                         <label>Current Value</label>
-                                        <input type="text" id="currentValue" name="currentValue" value={house.currentValue} onChange={handleInput} className="form-control" />
+                                        <input type="text" id="currentValue" name="currentValue" value={house.currentValue} className="form-control" />
                                     </div>
                                     <div className="mb-3">
                                         <label>Loan Amount</label>
-                                        <input type="text" id="laonAmount" name="loanAmount" value={house.loanAmount} onChange={handleInput} className="form-control" />
+                                        <input type="text" id="laonAmount" name="loanAmount" value={house.loanAmount} className="form-control" />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label>Risk</label>
+                                        <input type="text" id="risk" name="risk" value={house.risk} className="form-control" />
                                     </div>
                                 </form>
                             </div>

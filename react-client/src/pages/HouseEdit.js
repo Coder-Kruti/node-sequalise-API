@@ -111,6 +111,11 @@ function HouseEdit() {
                                         <span className="text-danger">{inputErrorList.address}</span>
                                     </div>
                                     <div className="mb-3">
+                                        <label>Risk</label>
+                                        <input type="text" id="risk" name="risk" value={house.risk} readOnly className="form-control" />
+                                        <span className="text-danger">{inputErrorList.address}</span>
+                                    </div>
+                                    <div className="mb-3">
                                         <button type="submit" className="btn btn-primary" > Update house</button>
                                     </div>
                                 </form>

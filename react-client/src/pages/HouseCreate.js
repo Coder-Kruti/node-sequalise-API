@@ -6,37 +6,42 @@ import Loading from '../components/Loading.js'
 function HouseCreate() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
-    const [inputErrorList,setInputErrorList] = useState({})
+    const [inputErrorList, setInputErrorList] = useState({})
     const [house, setHouse] = useState({
         address: '',
         currentValue: '',
-        loanAmount: ''
+        loanAmount: '',
+        risk: ''
     });
     const handleInput = (event) => {
         event.persist();
-        setHouse(house => ({...house, [event.target.name]: event.target.value}))
+        setHouse(house => ({ ...house, [event.target.name]: event.target.value }))
     }
 
     const saveHouse = (e) => {
         e.preventDefault();
         setLoading(true)
-        const data ={
+
+        const data = {
             address: house.address,
             currentValue: house.currentValue,
             loanAmount: house.loanAmount
         }
+
         axios.post(`http://localhost:8080/api/houses`, data)
-            .then(res =>{
+            .then(res => {
+                console.log("*------**************")
+                console.log(res)
                 alert("Saved the house data")
                 navigate('/houses')
                 setLoading(false)
-            }).catch(function(error){
-                if(error.response){
-                    if(error.response.status === 422  ){
+            }).catch(function (error) {
+                if (error.response) {
+                    if (error.response.status === 422) {
                         setInputErrorList(error.response.data.errors)
                         setLoading(false)
                     }
-                    if(error.response.status === 500  ){
+                    if (error.response.status === 500) {
                         alert("Service is currently unavaible.")
                         setLoading(false)
                     }
@@ -45,7 +50,7 @@ function HouseCreate() {
             });
 
     }
-    if(loading) {
+    if (loading) {
         return (
             <Loading />
         )
@@ -66,17 +71,17 @@ function HouseCreate() {
                                 <form onSubmit={saveHouse}>
                                     <div className="mb-3">
                                         <label>Address</label>
-                                        <input type="text" id = "address" name="address" value={house.address} onChange={handleInput} className="form-control" />
+                                        <input type="text" id="address" name="address" value={house.address} onChange={handleInput} className="form-control" />
                                         <span className="text-danger">{inputErrorList.address}</span>
                                     </div>
                                     <div className="mb-3">
                                         <label>Current Value</label>
-                                        <input type="text" id ="currentValue" name="currentValue" value={house.currentValue} onChange={handleInput} className="form-control" />
+                                        <input type="text" id="currentValue" name="currentValue" value={house.currentValue} onChange={handleInput} className="form-control" />
                                         <span className="text-danger">{inputErrorList.address}</span>
                                     </div>
                                     <div className="mb-3">
                                         <label>Loan Amount</label>
-                                        <input type="text" id ="laonAmount"  name="loanAmount" value={house.loanAmount} onChange={handleInput} className="form-control" />
+                                        <input type="text" id="laonAmount" name="loanAmount" value={house.loanAmount} onChange={handleInput} className="form-control" />
                                         <span className="text-danger">{inputErrorList.address}</span>
                                     </div>
                                     <div className="mb-3">

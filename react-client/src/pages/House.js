@@ -2,45 +2,45 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import Loading from "../components/Loading";
-function House () {
+function House() {
 
     const [loading, setLoading] = useState(true);
     const [houses, setHouses] = useState([]);
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/houses`).then(res => {
-                console.log(res)
-                setHouses(res.data);
-                setLoading(false)
+            console.log(res)
+            setHouses(res.data);
+            setLoading(false)
         });
     }, [])
-    if(loading) {
+    if (loading) {
         return (
-          <Loading />
+            <Loading />
         )
     }
     var houseDetails = ""
-    houseDetails =  houses?.map((item,index) => {
+    houseDetails = houses?.map((item, index) => {
         return (
-            <tr key = {index}>
+            <tr key={index}>
                 <td>{item.id}</td>
                 <td>{item.address}</td>
                 <td>{item.currentValue}</td>
                 <td>{item.loanAmount}</td>
                 <td>{item.risk}</td>
                 <td>
-                    <Link to={`${item.id}/edit`} className = "btn btn-success"> Edit </Link>
+                    <Link to={`${item.id}/edit`} className="btn btn-success"> Edit </Link>
                 </td>
                 <td>
-                    <Link to={`${item.id}/view`} className = "btn btn-success"> View </Link>
+                    <Link to={`${item.id}/view`} className="btn btn-success"> View </Link>
                 </td>
             </tr>
         )
 
     });
-    return(
-        <div className ="container mt-5">
-            <div className = "row">
+    return (
+        <div className="container mt-5">
+            <div className="row">
                 <div className="col-md-12">
                     <div className="card">
                         <div className="card-header">
