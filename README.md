@@ -1,4 +1,4 @@
-# House Table Full stack Appplication. 
+# House Table Full stack Application. 
 
 This repository holds a complete full-stack application focused on managing house-related data with risk assessment. It includes a Node.js server that handles APIs, a user-friendly React-based interface, and a MySQL database for storing information.
 <br>
