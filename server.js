@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 
 app.get('/', (req,res) => {
-    res.json({message: 'hi'}) 
+    res.json({message: 'Server is up and running.'})
 })
 
 //routers
