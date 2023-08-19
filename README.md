@@ -34,6 +34,8 @@ To check if the server is up and running, load  http://localhost:8080 in browser
 Once we have node server up and running. Follow the steps in [ReadMe](react-client/README.md)
 <br>
 
+# API postman collection
+[HouseTable.postman_collection.json](HouseTable.postman_collection.json)
 
 # Screen shots
 ### House Table screen when no house are added
